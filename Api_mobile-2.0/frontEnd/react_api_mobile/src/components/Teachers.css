@@ -1,0 +1,37 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to right, #8e44ad, #3498db);
+    color: white;
+  }
+  
+  .list-container {
+    background: white;
+    color: black;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  
+  .teacher-card {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .edit-btn {
+    background: #f39c12;
+    color: white;
+    padding: 5px;
+    border: none;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-btn {
+    background: #e74c3c;
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  

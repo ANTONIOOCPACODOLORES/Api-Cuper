@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Libro</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header">
+            <h1>Editar Libro</h1>
+            <a href="/" data-icon="home" class="ui-btn-left">Inicio</a>
+        </div>
+
+        <div role="main" class="ui-content">
+            <form action="/api/books/update/<%= book.book_id %>" method="POST">
+                <label for="txtBookId">ID del Libro:</label>
+                <input type="number" name="book_id" id="txtBookId" value="<%= book.book_id %>" readonly>
+
+                <label for="txtTitle">Título:</label>
+                <input type="text" name="title" id="txtTitle" value="<%= book.title %>" required>
+
+                <label for="txtAuthor">Autor:</label>
+                <input type="text" name="author" id="txtAuthor" value="<%= book.author %>" required>
+
+                <label for="txtGenre">Género:</label>
+                <input type="text" name="genre" id="txtGenre" value="<%= book.genre %>" required>
+
+                <label for="txtPublishedYear">Año de Publicación:</label>
+                <input type="number" name="publishedYear" id="txtPublishedYear" value="<%= book.publishedYear %>" required>
+
+                <label for="txtPages">Páginas:</label>
+                <input type="number" name="pages" id="txtPages" value="<%= book.pages %>" required>
+
+                <button type="submit" class="ui-btn ui-btn-inline ui-btn-b">Guardar Cambios</button>
+                <a href="/" class="ui-btn ui-btn-inline ui-btn-c">Cancelar</a>
+            </form>
+        </div>
+
+        <div data-role="footer" style="overflow:hidden;">
+            <h4 style="text-align: center;">Redes Sociales</h4>
+            <div data-role="navbar">
+                <ul>  
+                    <li><a href="#" data-icon="user"></a></li>
+                    <li><a href="#" data-icon="heart"></a></li>
+                    <li><a href="#" data-icon="mail"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

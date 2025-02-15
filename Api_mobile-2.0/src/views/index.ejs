@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Libros</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header">
+            <h1>Control de Libros</h1>
+            <a href="a" data-icon="gear" class="ui-btn-right">Opciones</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="a">Libros</a></li>
+                    <li><a href="a">Autores</a></li>
+                    <li><a href="a">Categorías</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div role="content" class="ui-content">
+            <form action="/api/books/insert" method="POST">
+                <label for="txtBookId">ID del Libro:</label>
+                <input type="number" name="book_id" id="txtBookId">
+
+                <label for="txtTitle">Título:</label>
+                <input type="text" name="title" id="txtTitle">
+
+                <label for="txtAuthor">Autor:</label>
+                <input type="text" name="author" id="txtAuthor">
+
+                <label for="txtGenre">Género:</label>
+                <input type="text" name="genre" id="txtGenre">
+
+                <label for="txtPublishedYear">Año de Publicación:</label>
+                <input type="number" name="publishedYear" id="txtPublishedYear">
+
+                <label for="txtPages">Páginas:</label>
+                <input type="number" name="pages" id="txtPages">
+
+                <button class="ui-btn ui-btn-inline">Guardar</button>
+            </form>
+
+            <ul>
+                <% books.forEach((book) => { %>
+                    <li>
+                        <div data-role="collapsible">
+                            <h4><%= book.title %></h4>
+                            <p>ID del Libro: <%= book.book_id %></p>
+                            <p>Título: <%= book.title %></p>
+                            <p>Autor: <%= book.author %></p>
+                            <p>Género: <%= book.genre %></p>
+                            <p>Año de Publicación: <%= book.publishedYear %></p>
+                            <p>Páginas: <%= book.pages %></p>
+                            <a href="/api/books/getOne/<%= book.book_id %>">Ver Detalles</a>
+                            <a href="/api/books/edit/<%= book.book_id %>" class="ui-btn ui-btn-icon-edit ui-btn-icon-bottom">Editar</a>
+                            <a href="/api/books/delete/<%= book.book_id %>" class="ui-btn ui-btn-icon-delete ui-btn-icon-bottom">Eliminar</a>
+                        </div>
+                    </li>
+                <% }) %>
+            </ul>
+
+        </div>
+
+        <div data-role="footer" style="overflow:hidden;">
+            <h4 style="text-align: center;">Redes Sociales</h4>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="user"></a></li>
+                    <li><a href="#" data-icon="heart"></a></li>
+                    <li><a href="#" data-icon="mail"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

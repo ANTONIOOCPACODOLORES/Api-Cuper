@@ -1,0 +1,21 @@
+{
+  "name": "mx.xicotepec.utxj.app.230642",
+  "version": "1.0.0",
+  "description": "Proyecto",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+     "dev": "nodemon src/index.js"
+  },
+  "author": "Antonio Ocpaco Dolores-230642",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.4",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
