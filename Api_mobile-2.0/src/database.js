@@ -1,7 +1,11 @@
-//Aqui va la conexion a la base de datos utilizando mongosee
-import mongoose from "mongoose";
-//MONGOOOSE tiene un metodo que le da una promesa cuando es exitoso es then y cuando no lo es-es catch
-mongoose.connect('mongodb+srv://TonyCrz03:unamanzana@api-mobile.txb03.mongodb.net/school_control_db?retryWrites=true&w=majority&appName=API-MOBILE')
-.then((db)=>console.log("Mondo db Atlas Connected"))
-.catch((error)=>console.error(error));
-export default mongoose;
+// src/database.js
+import mongoose from 'mongoose';
+
+const MONGODB_URI = 'mongodb+srv://TonyCrz03:unamanzana@api-mobile.txb03.mongodb.net/?retryWrites=true&w=majority&appName=API-MOBILE';
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('Conectado a MongoDB'))
+.catch(err => console.error('Error al conectar a MongoDB', err));

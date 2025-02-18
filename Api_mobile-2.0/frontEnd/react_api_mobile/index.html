@@ -1,13 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sistema de Control </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 24px;
+    }
+    nav {
+      margin: 10px 0;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #e0e0e0;
+    }
+    .container {
+      margin: 20px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #4CAF50;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-bottom: 10px;
+    }
+    input[type="text"], input[type="number"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: rgb(85, 76, 76);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #404b40;
+    }
+  </style>
+</head>
+<body>
+  <header>Hola bienvenido al sistema de Control Escolar</header>
+  <div class="container">
+    <nav>
+      <a href="/teachers">Teachers</a>
+      <a href="/students">Students</a>
+    </nav>
+    <div id="teachersForm">
+      <h2>Formulario de Profesores</h2>
+      <form id="teacherForm" onsubmit="handleTeacherSubmit(event)">
+        <label for="teacherNumber">Id_Profesor:</label>
+        <input type="number" id="teacherNumber" name="teacherNumber" required>
+        
+        <label for="teacherName">Nombre:</label>
+        <input type="text" id="teacherName" name="teacherName" required>
+        
+        <label for="teacherLastname">Apellido:</label>
+        <input type="text" id="teacherLastname" name="teacherLastname" required>
+        
+        <label for="teacherSalary">Salario:</label>
+        <input type="number" id="teacherSalary" name="teacherSalary" required>
+        
+        <label for="teacherCarrer">Carrera:</label>
+        <input type="text" id="teacherCarrer" name="teacherCarrer" required>
+        
+        <label for="teacherAge">Edad:</label>
+        <input type="number" id="teacherAge" name="teacherAge" required>
+        
+        <div><button type="submit">Agregar</button> <button type="submit">Actualizar</button> <button type="submit">Insertar</button></div>
+      </form>
+      <div id="teacherResponse"></div>
+    </div>
+    <div id="studentsForm">
+      <h2>Formulario de Estudiantes</h2>
+      <form id="studentForm" onsubmit="handleStudentSubmit(event)">
+        <label for="studentId">ID del Estudiante:</label>
+        <input type="number" id="studentId" name="studentId" required>
+        
+        <label for="studentName">Nombre:</label>
+        <input type="text" id="studentName" name="studentName" required>
+        
+        <label for="studentLastname">Apellido:</label>
+        <input type="text" id="studentLastname" name="studentLastname" required>
+        
+        <label for="studentGrade">Grado:</label>
+        <input type="number" id="studentGrade" name="studentGrade" required>
+        
+        <label for="studentGroup">Grupo:</label>
+        <input type="text" id="studentGroup" name="studentGroup" required>
+        
+        <label for="studentAverage">Promedio:</label>
+        <input type="number" id="studentAverage" name="studentAverage" required>
+        
+        <div><button type="submit">Agregar</button> <button type="submit">Actualizar</button> <button type="submit">Insertar</button></div>
+      </form>
+      <div id="studentResponse"></div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <script>
+      async function handleTeacherSubmit(event) {
+        event.preventDefault();
+        
+        const teacherData = {
+          teacher_number: document.getElementById('teacherNumber').value,
+          name: document.getElementById('teacherName').value,
+          lastname: document.getElementById('teacherLastname').value,
+          Salary: document.getElementById('teacherSalary').value,
+          carrer: document.getElementById('teacherCarrer').value,
+          Age: document.getElementById('teacherAge').value,
+        };
+        
+        try {
+          const response = await fetch('http://localhost:3000/api/teachers', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(teacherData),
+          });
+          
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          
+          const result = await response.json();
+          document.getElementById('teacherResponse').innerText = 'Success: ' + JSON.stringify(result);
+        } catch (error) {
+          document.getElementById('teacherResponse').innerText = 'Error: ' + error.message;
+        }
+      }
+
+      async function handleStudentSubmit(event) {
+        event.preventDefault();
+        
+        const studentData = {
+          student_id: document.getElementById('studentId').value,
+          name: document.getElementById('studentName').value,
+          lastname: document.getElementById('studentLastname').value,
+          grade: document.getElementById('studentGrade').value,
+          group: document.getElementById('studentGroup').value,
+          average: document.getElementById('studentAverage').value,
+        };
+        
+        try {
+          const response = await fetch('http://localhost:3000/api/students', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(studentData),
+          });
+          
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          
+          const result = await response.json();
+          document.getElementById('studentResponse').innerText = 'Success: ' + JSON.stringify(result);
+        } catch (error) {
+          document.getElementById('studentResponse').innerText = 'Error: ' + error.message;
+        }
+      }
+    </script>
+  </div>
+</body>
 </html>

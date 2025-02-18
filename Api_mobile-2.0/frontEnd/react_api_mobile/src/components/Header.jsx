@@ -1,13 +1,12 @@
-import React from "react";
-import "./Header.css";
+import React from 'react';
 
 const Header = ({ setView }) => {
   return (
-    <header className="header">
-      <h1>Gestión Escolar</h1>
+    <header>
+      <h1>Gestión de Control Escolar</h1>
       <nav>
-        <button onClick={() => setView("teachers")}>Profesores</button>
-        <button onClick={() => setView("students")}>Estudiantes</button>
+        <button onClick={() => setView('teachers')}>Teachers</button>
+        <button onClick={() => setView('students')}>Students</button>
       </nav>
     </header>
   );

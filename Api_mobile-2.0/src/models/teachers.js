@@ -18,3 +18,8 @@ const teachersSchema=new Schema({
 
 });
 export default model('teachers', teachersSchema);
+
+
+
+
+

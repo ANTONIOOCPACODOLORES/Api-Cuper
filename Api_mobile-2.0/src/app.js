@@ -1,25 +1,15 @@
-//aqui va la configuracion del servidor 
+// src/app.js
 import express from 'express';
-import ejs from 'ejs';
-import morgan from 'morgan';
-import studentsRoutes from './routes/students.routes.js';
+import './database.js'; // Importa la configuración de la base de datos
 import teachersRouter from './routes/teachers.routes.js';
-import booksRouter from './routes/books.routes.js';
+import studentsRouter from './routes/students.routes.js';
 
-const app = express();  //crear un hijo de express para hacer referencia al servidor con app
-
-//settings
-app.set('port', process.env.PORT || 3000);
-app.set('view engine', ejs); //es un mootor de vistas
-
-//Midlewares  comunicacion de un cliente con el servidor
+const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'));   //para el mientras este en desarrollo dev
+app.use('/api/teachers', teachersRouter);
+app.use('/api/students', studentsRouter);
 
-//Routes        
-app.use("/api/students", studentsRoutes);
-app.use("/api/teachers", teachersRouter);
-app.use( "/api/books", booksRouter);
-
-export default app;
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});

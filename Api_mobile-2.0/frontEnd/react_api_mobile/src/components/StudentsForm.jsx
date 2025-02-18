@@ -30,7 +30,7 @@ const StudentsForm = () => {
       <input type="number" name="edad" placeholder="Edad" value={student.edad} onChange={handleChange} required />
       <input type="text" name="carrera" placeholder="Carrera" value={student.carrera} onChange={handleChange} required />
       <input type="text" name="grupo" placeholder="Grupo" value={student.grupo} onChange={handleChange} required />
-      <button type="submit">Guardar</button>
+      <p><button type="submit">Guardar</button><button type="submit">Delete</button></p> 
     </form>
   );
 };

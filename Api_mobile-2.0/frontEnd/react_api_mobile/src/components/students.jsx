@@ -7,7 +7,7 @@ const Students = () => {
     <div className="container">
       <h2>Lista de Estudiantes</h2>
       <StudentsForm />
-      <p>Aquí irá la lista de estudiantes...</p>
+      <p>Lista de los estudiantes...</p>
     </div>
   );
 };
